@@ -30,6 +30,7 @@ function validarSenha(senha){
         }
 }
 
+//Invocando a função
 console.log(validarSenha(null))
 console.log(validarSenha('Davi'))
 console.log(validarSenha('Davi123'))
