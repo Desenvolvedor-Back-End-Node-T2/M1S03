@@ -18,15 +18,45 @@
  * - Acima de R$ 50 → frete grátis
  */
 
-function calcularFrete(valorPedido) {
-  // TODO: implementar lógica condicional
+
+let valorPedido = 28
+let mensagem = ''
+
+if (valorPedido <= 20){
+  mensagem = `Frete: R$ 5,00 | Total: R$${valorPedido + 5}`
+}else if (valorPedido <= 50){
+  mensagem = `Frete: R$ 3,00 | Total: R$${valorPedido + 3}`
+}else{
+  mensagem = `Frete Grátis | Total: R$${valorPedido}`
 }
 
-// Teste
-console.log("Frete:", calcularFrete(15));
-console.log("Frete:", calcularFrete(30));
-console.log("Frete:", calcularFrete(60));
+console.log(mensagem)
 
+
+//Criando a função
+function calcularFrete(valorPedido){
+  let mensagem = ''
+
+  if (valorPedido <= 20){
+  mensagem = `Frete: R$ 5,00 | Total: R$${valorPedido + 5}`
+  }else if (valorPedido <= 50){
+    mensagem = `Frete: R$ 3,00 | Total: R$${valorPedido + 3}`
+  }else{
+    mensagem = `Frete Grátis | Total: R$${valorPedido}`
+  }
+
+  return mensagem
+
+}
+
+//Invocando a função
+//1º Alternativa
+console.log(calcularFrete(37))
+
+//2º Alternativa
+const resultado = calcularFrete(10)
+
+console.log(resultado)
 
 /**
  * EXERCÍCIO 2:
@@ -36,7 +66,13 @@ console.log("Frete:", calcularFrete(60));
  */
 
 function verificarSituacao(media) {
-  // TODO: implementar
+  if (media >= 7){
+    return 'Aprovado!'
+  }else if (media >= 5){
+    return 'Recuperação!'
+  }else {
+    return 'Reprovado!'
+  }
 }
 
 // Teste
@@ -54,7 +90,9 @@ console.log("Situação:", verificarSituacao(4));
  * Exibir no console todos os números de 1 a 10 utilizando FOR
  */
 
-  // TODO: implementar usando for
+  for(let i = 1; i <= 10; i++){
+    console.log(i)
+  }
 
 
 /**
@@ -64,8 +102,13 @@ console.log("Situação:", verificarSituacao(4));
  * Utilizar WHILE.
  */
 
-  // TODO: implementar
+  let cont = 0
 
+  while(cont !== 5){
+    console.log('Adicionando Produto...')
+
+    cont++
+  }
 
 /**
  * EXERCÍCIO 5:
@@ -74,11 +117,23 @@ console.log("Situação:", verificarSituacao(4));
  * Usar DO-WHILE.
  */
 
+  const prompt = require('prompt-sync')()
+
   let tentativas = 0;
   let senhaCorreta = "1234";
   let senhaDigitada;
 
-  // TODO: implementar lógica
+  do{
+    senhaDigitada = prompt('Digite sua senha: ')
+
+    if (senhaDigitada === senhaCorreta){
+      console.log('Acesso Liberado!')
+      break
+    }
+
+    tentativas++
+
+  }while(tentativas !== 3)
 
 
 // ======================================================
@@ -91,12 +146,28 @@ console.log("Situação:", verificarSituacao(4));
  * o valor total da compra.
  */
 
+let nomes = ['Davi', 'Ana', 'John', 'Alex']
+
+nomes[0]
+
 function calcularTotal(precos) {
-  // TODO: implementar
+  let soma = 0
+  
+  //percorrendo todos os itens do array e somando cada elemento a soma
+  for(let i = 0; i < precos.length; i++){
+    console.log(`${i+1}º Laço de Repetição`)
+    console.log('Valor da variável antes da soma', soma)
+    soma += precos[i] // soma = soma + precos[i]
+    console.log('Valor da variável depois da soma', soma)
+  }
+
+  return soma
 }
 
 // Teste
-console.log("Total:", calcularTotal([10, 20, 30]));
+//console.log("Total: R$", calcularTotal([10, 20, 30]));
+console.log(`Total: R$${calcularTotal([50, 30, 20])}`)
+console.log(`Total: R$${calcularTotal([50, 30, 20, 50, 20])}`)
 
 
 /**
@@ -104,9 +175,12 @@ console.log("Total:", calcularTotal([10, 20, 30]));
  * Criar uma função que receba um nome e retorne uma saudação personalizada.
  */
 
-  // TODO: implementar
+function saudacao(nome){
+  return `Olá, ${nome}!`
+}
 
-console.log(nomeDaFuncao("Davi"));
+console.log(saudacao("Davi"));
+console.log(saudacao("Ana"));
 
 
 /**
@@ -116,10 +190,17 @@ console.log(nomeDaFuncao("Davi"));
  * - "Ímpar" se for ímpar
  */
 
-  // TODO: implementar
+function parOuImpar(valor){
 
-console.log(nomeDaFuncao(10));
-console.log(nomeDaFuncao(7));
+  if (valor % 2 == 0){
+    return 'PAR!'
+  }
+
+  return 'ÍMPAR!'
+}
+
+console.log(parOuImpar(10));
+console.log(parOuImpar(7));
 
 
 // ======================================================
@@ -127,7 +208,7 @@ console.log(nomeDaFuncao(7));
 // ======================================================
 
 /**
- * Um sistema de estacionamento cobra:
+ * Um sistema de estacionamento  R$ cobra:
  * - R$ 5 por hora
  * - Se passar de 3 horas, aplica desconto de 10%
  *
@@ -135,11 +216,19 @@ console.log(nomeDaFuncao(7));
  */
 
 
-  // TODO: implementar
+function calcularEstacionamento(horas){
+  let total = horas * 5
+
+  if (horas > 3){
+    return total * 0.9
+  }
+
+  return total
+}
 
 
-console.log("Valor estacionamento:", nomeDaFuncao(2));
-console.log("Valor estacionamento:", nomeDaFuncao(4));
+console.log("Valor estacionamento: R$ ", calcularEstacionamento(2));
+console.log("Valor estacionamento: R$ ", calcularEstacionamento(4));
 
 /**
  * Perguntas para reflexão:
